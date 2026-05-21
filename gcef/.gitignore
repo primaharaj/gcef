@@ -1,0 +1,69 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+
+# Distribution / packaging
+*.egg-info/
+*.egg
+dist/
+build/
+wheels/
+sdist/
+.eggs/
+lib/
+lib64/
+
+# Testing
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# CHIRPS tile cache — large raster files, not committed
+.gcef/
+chirps_cache/
+*.tif
+*.tif.gz
+
+# Generated report output — not committed (artefacts, not source)
+# Exception: docs/sample_report.* if present
+gcef_report.pdf
+gcef_report.html
+*_report.pdf
+*_report.html
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Environment
+.env
+.env.*
+*.env
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json

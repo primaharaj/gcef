@@ -1,0 +1,47 @@
+name: Feature request
+description: Suggest an addition to the framework
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: What gap in the causal evaluation workflow would this fill?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: How should it work? If it involves a new estimator or assumption, reference the relevant paper.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part of GCEF does this affect?
+      options:
+        - Treatment specification (treatment.py)
+        - Outcome / resilience index (outcomes.py)
+        - Stage 1 — IV/DiD (stage1.py)
+        - Stage 2 — causal forest (stage2.py)
+        - Bounds (bounds.py)
+        - Shock instrumentation (shock.py)
+        - Report generation (report.py)
+        - Assumptions / diagnostics (assumptions.py)
+        - Testing infrastructure
+        - Documentation / specification
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: spec
+    attributes:
+      label: Specification impact
+      options:
+        - label: This would require a change to the GCEF specification document
+        - label: This is on the v0.2 roadmap in CHANGELOG.md
+        - label: This is a new item not currently in the roadmap

@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Methodology question
+    url: https://github.com/priya-maharaj/gcef/discussions
+    about: Questions about identification strategy, estimands, or interpretation — use Discussions.

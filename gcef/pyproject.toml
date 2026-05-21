@@ -1,0 +1,92 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gcef"
+version = "0.1.0"
+description = "Causal impact evaluation of green credit instruments on SME resilience in Sub-Saharan Africa"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "Priya Maharaj", email = "priya@pemigloans.co.ke" }]
+keywords = [
+    "causal inference", "green finance", "climate finance",
+    "SME resilience", "Sub-Saharan Africa", "impact evaluation",
+    "difference-in-differences", "instrumental variables", "causal forest",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    # Core causal inference
+    "econml>=0.15",          # ForestDRIV, causal ML estimators
+    "pyfixest>=0.18",        # IV regression with fixed effects, C&S DiD
+    # Data
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "scikit-learn>=1.3",     # nuisance model base classes
+    "statsmodels>=0.14",     # diagnostic tests
+    # Geospatial (shock module)
+    "geopandas>=0.14",       # spatial operations for CHIRPS linkage
+    "rasterio>=1.3",         # CHIRPS/MODIS raster ingestion
+    "requests",              # CHIRPS HTTP download
+    # Report generation
+    "reportlab>=4.0",        # PDF output
+    "jinja2>=3.0",           # HTML templating
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+# R interop for Callaway & Sant'Anna (optional — pyfixest covers the common case)
+# Install with: pip install gcef[r]
+r = [
+    "rpy2>=3.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/priya-maharaj/gcef"
+Documentation = "https://github.com/priya-maharaj/gcef/blob/main/SPECIFICATION.md"
+Repository = "https://github.com/priya-maharaj/gcef"
+"Bug Tracker" = "https://github.com/priya-maharaj/gcef/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["gcef*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+    # Suppress expected GCEF warnings in tests unless explicitly testing for them
+    "ignore::gcef.exceptions.GCEFWarning",
+    # Suppress upstream library warnings that don't affect GCEF behaviour
+    "ignore::FutureWarning:econml",
+    "ignore::FutureWarning:sklearn",
+    "ignore::DeprecationWarning:pyfixest",
+    "ignore::RuntimeWarning:numpy",
+]
+addopts = "-ra --tb=short"
+
+[tool.coverage.run]
+source = ["gcef"]
+omit = ["gcef/testing/*", "tests/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+    "if __name__ == .__main__.:",
+]

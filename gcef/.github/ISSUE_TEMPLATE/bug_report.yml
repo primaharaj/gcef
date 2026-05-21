@@ -1,0 +1,57 @@
+name: Bug report
+description: Something produces wrong output or raises an unexpected error
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before filing a bug: check that your data satisfies the [minimum requirements](../blob/main/README.md#what-your-data-needs)
+        and that the relevant identification assumptions are met.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened
+      description: What did you expect, and what did you get instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproducible example
+      description: The smallest code snippet that reproduces the issue.
+      render: python
+    validations:
+      required: true
+
+  - type: textarea
+    id: output
+    attributes:
+      label: Full error output
+      render: text
+
+  - type: input
+    id: version
+    attributes:
+      label: GCEF version
+      placeholder: "e.g. 0.1.0"
+    validations:
+      required: true
+
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      placeholder: "e.g. 3.11.4"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: methodology
+    attributes:
+      label: Is this a methodology question?
+      description: If you're asking about identification assumptions or interpretation, use Discussions instead.
+      options:
+        - label: This is a code bug, not a methodology question
+          required: true
